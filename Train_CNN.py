@@ -126,19 +126,22 @@ Call with:
 	model: Model you are currently training
 	val_loader: Data loader for validation images
 	criterion: Loss function you apply
+ 	device: Device you use to train your model
+  		--> Make sure, device is avaialbe on your hardware
 Returns: 
 	Average loss on validation images
 	Accuracy on validation images
 '''
 def validation(model: nn.Module, 
 	       val_loader: DataLoader, 
-	       criterion: nn.Module):
+	       criterion: nn.Module,
+		device: str = 'cpu'):
     model.eval()
     val_loss = 0
     acc = 0
     for ims, labels in iter(val_loader):
-        #ims = ims.to('cuda:1')
-        #labels = labels.to('cuda:1')
+        ims = ims.to(device)
+        labels = labels.to(device)
 
         output = model.forward(ims)
         val_loss += criterion(output, labels).item()
@@ -168,7 +171,8 @@ After every epoch:
 	Results are written to 'results/results.txt'
 		--> Make sure, 'results/results.txt' exists
 Returns: 
-	  list of validation losses for every epoch
+	  list of accuracy on validation images for every epoch
+   	  list of validation losses for every epoch
 	  list of training losses for every epoch
 	  trained model (after last epoch)
 	  file name for best model trained
