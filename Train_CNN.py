@@ -167,6 +167,11 @@ After every epoch:
 	Results are written to console
 	Results are written to 'results/results.txt'
 		--> Make sure, 'results/results.txt' exists
+Returns: 
+	  list of validation losses for every epoch
+	  list of training losses for every epoch
+	  trained model (after last epoch)
+	  file name for best model trained
 '''
 def train_classifier(model: nn.Module, 
 		     optimizer, 
