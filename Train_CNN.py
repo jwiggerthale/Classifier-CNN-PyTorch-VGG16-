@@ -1,7 +1,7 @@
 '''
 This code implements training of convolutional neural network for image classification in PyTorch
 	--> Images are grayscale (1 channel, 1024 x 2048 pixels)
-For modeling, model following VGG16 architectire is used (implemented from scratch in module vgg)
+For modeling, model following VGG16 architectire is used (c.f. https://arxiv.org/pdf/1409.1556.pdf, implemented from scratch in module vgg)
 '''
 
 import numpy as np
